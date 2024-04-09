@@ -6,8 +6,8 @@ name = "pypi"
 [packages]
 pylint = "*"
 black = "*"
+speechrecognition = "*"
+pyaudio = "*"
+setuptools = "*"
 
 [dev-packages]
-
-[requires]
-python_version = "3.10"
