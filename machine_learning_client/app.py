@@ -49,7 +49,7 @@ def audio_file():
         
         return jsonify({'message': 'Upload Successful!'}), 200
     
-@app.route('/audio_features', method=['GET'])
+@app.route('/audio_features', methods=['GET'])
 def get_audio_features():
     
     result = AudioFeature.find()
