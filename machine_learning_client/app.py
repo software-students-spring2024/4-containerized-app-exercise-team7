@@ -8,9 +8,11 @@ app = Flask(__name__)
 
 # set up mongo 
 mongo_client = MongoClient('mongodb+srv://proj4:sweproj4@proj4.u34b77v.mongodb.net/')
-db = mongo_client['proj4']  # db name
-AudioFeature = db['audio_features']  # collection name
+db = mongo_client['proj4']  
+AudioFeature = db['audio_features']  
 
+UPLOAD_FOLDER = 'uploads'
+app.config['UPLOAD_FOLDER']= UPLOAD_FOLDER
 
 def extract_audio_feature(audio_file):
     
@@ -47,8 +49,14 @@ def audio_file():
         
         return jsonify({'message': 'Upload Successful!'}), 200
     
-#@app.route('/audio_features', method=['GET'])
-#def get_audio_features():
+@app.route('/audio_features', method=['GET'])
+def get_audio_features():
+    
+    result = AudioFeature.find()
+    data = [{'filename': addition['filename'], 'features': addition['features']} for addition in result]
+    
+    return jsonify(data), 200
+    
     
 if __name__ == '_main_':
     app.run(debug=True, port=5001)
