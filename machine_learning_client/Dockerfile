@@ -1,19 +1,26 @@
-FROM python:3.9
+FROM python:3
 
+WORKDIR /app/machine_learning_client
 
+COPY requirements.txt ./
 
-RUN apt-get update
-RUN apt-get install libasound-dev libportaudio2 libportaudiocpp0 portaudio19-dev -y
-
-
-
-# Copy your Python files into the container
-COPY . /app
-
-# Set the working directory
-WORKDIR /app
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+    build-essential \
+    cmake \
+    libopenblas-dev \
+    liblapack-dev \
+    libx11-dev \
+    libgl1-mesa-glx libglib2.0-0 \
+    && rm -rf /var/lib/apt/lists/*
 
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Specify the command to run your Python script
-CMD ["python", "app.py"]
+COPY . /app/machine_learning_client
+
+EXPOSE 5001
+
+ENV MONGODB_URI="mongodb://mongo:27017/"
+ENV MONGODB_DATABASE="proj4"
+
+CMD ["python", "app.py", "python3"]
