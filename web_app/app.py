@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 from dotenv import load_dotenv
 from pymongo import MongoClient
 import os
@@ -14,7 +14,9 @@ mongo_dbname = os.getenv("MONGO_DBNAME")
 client = MongoClient(mongo_uri)
 db = client[mongo_dbname]
 
-
+@app.route("/")
+def home():
+    return render_template("index.html")
 
 if __name__ == "__main__":
     app.run(debug=True, port=os.getenv("FLASK_PORT", 5000))
