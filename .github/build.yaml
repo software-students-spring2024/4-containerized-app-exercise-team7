@@ -20,10 +20,10 @@ jobs:
           pipenv --python ${{ matrix.python-version }}
           pipenv install pytest
           pipenv install
+          pipenv lock
       - name: Turn on 'editable' mode
         run: |
           pipenv install -e .
-          pipenv lock
       - name: Test with pytest
         run: |
           pipenv run python -m pytest
