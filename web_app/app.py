@@ -18,5 +18,17 @@ db = client[mongo_dbname]
 def home():
     return render_template("index.html")
 
+@app.route("/submit")
+def add():
+    return render_template("submit.html")
+
+@app.route("/view")
+def see():
+    return render_template("view.html")
+
+@app.route("/analyze")
+def notes():
+    return render_template("analyze.html")
+
 if __name__ == "__main__":
     app.run(debug=True, port=os.getenv("FLASK_PORT", 5000))
