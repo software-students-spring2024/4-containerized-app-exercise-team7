@@ -1,10 +1,13 @@
 <html>
-  <head>
-    <title>View Your Melodies</title>
-  </head>
-  <body>
-    <h1>Your Melodies</h1>
-    <p>Submit Melody</p>
-    <p>Go Home</p>
-  </body>
+<head>
+  <title>View Your Melodies</title>
+</head>
+<body>
+  <h1>Your Melodies</h1>
+  {% for melody in melodies %}
+    <p><a href="/analyze/{{ melody['_id'] }}">{{ melody['title'] }}</a></p>
+  {% endfor %}
+  <a href="/submit">Submit Melody</a><br>
+  <a href="/">Go Home</a>
+</body>
 </html>
