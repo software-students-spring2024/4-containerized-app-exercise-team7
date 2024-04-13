@@ -12,7 +12,16 @@ RUN apt-get update \
     liblapack-dev \
     libx11-dev \
     libgl1-mesa-glx libglib2.0-0 \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* 
+
+#RUN apt-get install libasound-dev libportaudio2 libportaudiocpp0 portaudio19-dev -y
+
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
+    libasound-dev \
+    libportaudio2 \
+    libportaudiocpp0 \
+    portaudio19-dev \
+ && rm -rf /var/lib/apt/lists/*
 
 RUN pip install --no-cache-dir -r requirements.txt
 

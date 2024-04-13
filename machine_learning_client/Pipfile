@@ -9,5 +9,8 @@ black = "*"
 speechrecognition = "*"
 pyaudio = "*"
 setuptools = "*"
+pymongo = "*"
+librosa = "*"
+flask = "*"
 
 [dev-packages]
