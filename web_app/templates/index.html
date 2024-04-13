@@ -1,0 +1,14 @@
+<html>
+<head>
+  <title>Home</title>
+</head>
+<body>
+  <h1>Welcome!!!!!</h1>
+  <a href="/submit">Submit Melody</a><br>
+  <a href="/view">See Your Melodies</a><br>
+  {% if analytics %}
+    <h2>Analytics</h2>
+    <p>Total Melodies: {{ analytics.total_melodies }}</p>
+  {% endif %}
+</body>
+</html>

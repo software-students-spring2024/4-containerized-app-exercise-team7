@@ -1,0 +1,17 @@
+<html>
+<head>
+  <title>Analysis</title>
+</head>
+<body>
+  <h1>Analysis</h1>
+  <h2>{{ melody['title'] }} Analysis</h2>
+  <ul>
+    {% for note in notes %}
+    <li>{{ note }}</li>
+    {% endfor %}
+  </ul>
+  <a href="/submit">Submit New Melody</a><br>
+  <a href="/view">See All Melodies</a><br>
+  <a href="/">Go Home</a>
+</body>
+</html>
