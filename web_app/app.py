@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, redirect, render_template, request, url_for
 from dotenv import load_dotenv
 from pymongo import MongoClient
 import os
@@ -13,23 +13,30 @@ app = Flask(__name__)
 app.secret_key = '232323112@@11'
 
 # mongo_uri = os.getenv("MONGO_URI")
-# mongo_dbname = os.getenv("MONGO_DBNAME")
+# mongo_dbname = str(os.getenv("MONGO_DBNAME"))
 # client = MongoClient(mongo_uri)
 # db = client[mongo_dbname]
 
 @app.route("/")
 def home():
-    return render_template("index.html")
+    melodies = list(db.melodies.find())
+    analytics = {"total melodies": len(melodies)}
+    return render_template("index.html", melodies=melodies, analytics=analytics)
 
-@app.route("/submit")
+@app.route("/submit", methods=["GET","POST"])
 def add():
+    if request.method == "POST":
+        melodydata = request.form['melody']
+        db.melodies.insert_one({"melody": melodydata, "date":datetime.datetime.now()})
+        return redirect(url_for("home"))
     return render_template("submit.html")
 
 @app.route("/view")
 def see():
-    return render_template("view.html")
+    melodies = list(db.melodies.find())
+    return render_template("view.html", melodies=melodies)
 
-@app.route("/analyze")
+@app.route("/analyze/<id>")
 def notes():
     return render_template("analyze.html")
 
