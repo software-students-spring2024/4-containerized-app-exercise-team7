@@ -68,7 +68,7 @@ Teams are expected to follow a roughly "agile"-style development workflow, with 
 
 ### Task boards
 
-ALl teams must use task boards to provide insight into the status of all work.
+All teams must use task boards to provide insight into the status of all work.
 
 - The task boards must have at least 4 columns: "`To Do`", "`In Progress`", "`Awaiting Review`", "`Done`".
 - Teams must represent all work to be done as discrete tasks on the task board, where each task represents about one day's work for one team member.
