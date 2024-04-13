@@ -9,9 +9,9 @@ jobs:
         # repeat same job for each subsystem in the following subdirectories
         subdir: [web-app, machine-learning-client]
     steps:
-      - uses: actions/checkout@v20
+      - uses: actions/checkout@v4
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: "3.10" # update version(s) as needed
       - name: Install dependencies
