@@ -4,13 +4,9 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-pylint = "*"
-black = "*"
-speechrecognition = "*"
-pyaudio = "*"
-setuptools = "*"
+flask = "*"
+requests = "*"
 pymongo = "*"
 librosa = "*"
-flask = "*"
 
 [dev-packages]
