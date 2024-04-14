@@ -1,14 +1,18 @@
+<!DOCTYPE html>
 <html>
 <head>
   <title>Home</title>
+  <link href="../styles/index.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito" >
 </head>
-<body>
-  <h1>Welcome!!!!!</h1>
-  <a href="/submit">Submit Melody</a><br>
-  <a href="/view">See Your Melodies</a><br>
+<body><!DOCTYPE html>
+  <h1>Welcome to Melody Note Finder</h1>
   {% if analytics %}
     <h2>Analytics</h2>
     <p>Total Melodies: {{ analytics.total_melodies }}</p>
   {% endif %}
+  <br><br>
+  <a class="button" href="/submit">Submit Melody</a>&nbsp;
+  <a class="button" href="/view">See Your Melodies</a><br>
 </body>
 </html>
