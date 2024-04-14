@@ -19,3 +19,12 @@ def test_no_file(client):
     response = client.post('/upload', data={})
     assert response.status_code == 400
     assert 'no file' in response.get_json()['error']
+    
+
+def test_empty_filename(client):
+    
+    data = {'file': (io.BytesIO(b"some initial binary data: \x00\x01"), '')}
+    
+    response = client.post('/upload', data=data)
+    assert response.status_code == 400
+    assert 'No File' in response.get_json()['error']
