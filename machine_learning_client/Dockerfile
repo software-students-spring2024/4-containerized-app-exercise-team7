@@ -32,4 +32,4 @@ EXPOSE 5001
 ENV MONGODB_URI="mongodb://mongo:27017/"
 ENV MONGODB_DATABASE="proj4"
 
-CMD ["python", "app.py", "python3"]
+CMD ["python", "app.py"]
