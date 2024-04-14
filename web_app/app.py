@@ -54,6 +54,7 @@ def see():
     return render_template("view.html", melodies=melodies)
     #return render_template("view.html")
 
+
 # @app.route("/analyze/<id>")
 # def notes():
 #     return render_template("analyze.html")

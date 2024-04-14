@@ -13,5 +13,6 @@ pymongo = "*"
 librosa = "*"
 flask = "*"
 python-dotenv = "*"
+pytest = "*"
 
 [dev-packages]
