@@ -71,6 +71,15 @@ Navigate to the 'submit melody' tab. You should then upload your audio file and 
 
 To get an analysis of the last uploaded file, navigate to the 'see your melody' tab. The results of your analysis will be here.
 
+# Contributors
+[Neal Haulsey](https://github.com/nhaulsey)
+
+[Denzel Prudent](https://github.com/denprud)
+
+[Rakshit Sridhar](https://github.com/RakSridhar23)
+
+[Babamayokun Okudero](https://github.com/Mokudero)
+
 
 
 
