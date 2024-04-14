@@ -1,6 +1,7 @@
 import pytest
 
-from app import *
+from web_app.app import *
+from web_app.app import app
 
 
 class Tests:
