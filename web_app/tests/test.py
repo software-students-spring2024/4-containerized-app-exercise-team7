@@ -39,3 +39,9 @@ def test_submit_page(client):
     assert response.status_code == 200
     assert b"Add Melody" in response.data
 
+def test_view_page(client):
+
+    response = client.get("/view")
+    assert response.status_code == 200
+    assert b"Your Melodies" in response.data
+
