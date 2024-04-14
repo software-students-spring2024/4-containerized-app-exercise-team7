@@ -41,5 +41,6 @@ def audio_file():
         AudioFeature.insert_one(data)
         
         return jsonify({'message': 'Upload Successful!'}), 200
-
-app.run(host='0.0.0.0', debug=True, port=5001)
+    
+if __name__ == "__main__":
+    app.run(host='0.0.0.0', debug=True, port=5001)

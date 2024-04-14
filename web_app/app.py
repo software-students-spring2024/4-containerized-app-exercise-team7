@@ -11,17 +11,17 @@ load_dotenv()
 
 app = Flask(__name__)
 app.secret_key = '232323112@@11'
-
-# mongo_uri = os.getenv("MONGO_URI")
-# mongo_dbname = str(os.getenv("MONGO_DBNAME"))
-# client = MongoClient(mongo_uri)
-# db = client[mongo_dbname]
+mongo_uri = os.getenv("MONGO_URI")
+mongo_dbname = str(os.getenv("MONGO_DBNAME"))
+client = MongoClient(mongo_uri)
+db = client[mongo_dbname]
 
 @app.route("/")
 def home():
-    melodies = list(db.melodies.find())
-    analytics = {"total melodies": len(melodies)}
-    return render_template("index.html", melodies=melodies, analytics=analytics)
+    # melodies = list(db.melodies.find())
+    # analytics = {"total melodies": len(melodies)}
+    return render_template("index.html")
+    #return render_template("index.html", melodies=melodies, analytics=analytics)
 
 @app.route("/submit", methods=["GET","POST"])
 def add():
@@ -35,6 +35,7 @@ def add():
 def see():
     melodies = list(db.melodies.find())
     return render_template("view.html", melodies=melodies)
+    #return render_template("view.html")
 
 @app.route("/analyze/<id>")
 def notes():
