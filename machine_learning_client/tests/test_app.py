@@ -35,3 +35,6 @@ def test_wrong_file_extension(client):
     response = client.post('/upload', data=data)
     assert response.status_code == 400
     assert 'File not supported' in response.get_json()['error']
+    
+def test_sanity_check(client):
+    assert True

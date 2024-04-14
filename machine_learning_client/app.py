@@ -5,6 +5,7 @@ import librosa
 from dotenv import find_dotenv, load_dotenv
 import os
 import io
+import numpy as np
 
 load_dotenv()
 
@@ -34,6 +35,8 @@ def extract_audio_feature(audio_file):
     
     temp = librosa.beat.tempo(y=y, sr=sr)[0]
     
+    pitches, magnitudes = librosa.piptrack(y=y, sr= sr)
+    pitch= np.max(pitches, axis= 0)
     #beat tracking 
 
     
@@ -43,6 +46,7 @@ def extract_audio_feature(audio_file):
     feature ={
         'mfcc': mfcc.tolist(),
         'temp': temp,
+        'pitches': pitch.tolist()
     }
     
     return feature
