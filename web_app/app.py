@@ -10,10 +10,17 @@ load_dotenv()
 
 app = Flask(__name__)
 
-mongo_uri = os.getenv("MONGO_URI")
+#mongo_uri = os.getenv("MONGO_URI")
 mongo_dbname = str(os.getenv("MONGO_DBNAME"))
-client = MongoClient(mongo_uri)
+client = MongoClient("mongodb://localhost:27017/?directConnection=true&serverSelectionTimeoutMS=2000")
 db = client[mongo_dbname]
+try:
+    # verify the connection works by pinging the database
+    db.command("ping")  # Use the db object to ping
+    print(" *", "Connected to MongoDB!")  
+except Exception as e:
+    # the ping command failed, so the connection is not available.
+    print(" * MongoDB connection error:", e)
 
 @app.route("/")
 def home():
