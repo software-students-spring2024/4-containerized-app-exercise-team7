@@ -9,7 +9,8 @@
   {% for melody in melodies %}
     <p><a href="/analyze/{{ melody['_id'] }}">{{ melody['title'] }}</a></p>
   {% endfor %}
-  <a href="/submit">Submit Melody</a><br>
-  <a href="/">Go Home</a>
+  <br><br>
+  <a class="button" href="/submit">Submit Melody</a>&nbsp;
+  <a class="button" href="/">Go Home</a>
 </body>
 </html>
