@@ -12,5 +12,6 @@ setuptools = "*"
 pymongo = "*"
 librosa = "*"
 flask = "*"
+python-dotenv = "*"
 
 [dev-packages]

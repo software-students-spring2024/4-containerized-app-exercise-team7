@@ -2,15 +2,25 @@ from flask import Flask, request, jsonify
 import pymongo
 from pymongo import MongoClient
 import librosa
+from dotenv import find_dotenv, load_dotenv
 import os
 import io
 
+load_dotenv()
+
 app = Flask(__name__)
 
+DB_USER = os.getenv("DB_USER")
+DB_PASSWORD = os.getenv("DB_PASSWORD")
+DB_HOST = os.getenv("DB_HOST")
+
 # set up mongo 
-mongo_client = MongoClient('mongodb+srv://proj4:sweproj4@proj4.u34b77v.mongodb.net/')
-db = mongo_client['proj4']  
-AudioFeature = db['audio_features']  
+# uri = f"mongodb+srv://{DB_USER}:{DB_PASSWORD}@{DB_HOST}/?retryWrites=true&w=majority&appName=Cluster0&tlsAllowInvalidCertificates=true"
+# mongo_client = MongoClient(uri)
+mongo_client = MongoClient('mongodb://mongo_container:27017/')
+db = mongo_client.get_database("proj4")
+audio_collection = db.get_collection("audio_features")
+
 
 def extract_audio_feature(audio_file):
     
@@ -38,7 +48,7 @@ def audio_file():
             'filename': fn,
             'features': audio_features
             }
-        AudioFeature.insert_one(data)
+        audio_collection.insert_one(data)
         
         return jsonify({'message': 'Upload Successful!'}), 200
     

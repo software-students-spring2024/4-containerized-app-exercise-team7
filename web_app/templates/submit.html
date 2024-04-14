@@ -4,9 +4,9 @@
 </head>
 <body>
   <h1>Add Melody</h1>
-  <form action="/submit" method="post">
-    <input type="text" name="melody" placeholder="Enter melody data or upload a file">
-    <input type="submit" value="Submit">
+  <form action="/send" method="post" enctype="multipart/form-data">
+    <input type="file" name="file">
+    <input type="submit" value="Upload">
   </form>
   <a href="/">Go Home</a>
 </body>

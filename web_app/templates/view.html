@@ -4,10 +4,13 @@
 </head>
 <body>
   <h1>Your Melodies</h1>
-  {% for melody in melodies %}
+  <!-- {% for melody in melodies %}
     <p><a href="/analyze/{{ melody['_id'] }}">{{ melody['title'] }}</a></p>
+  {% endfor %} -->
+  {% for key, value in melodies.items() %}
+    <p>{{key}}: {{value}}</p>
   {% endfor %}
-  <a href="/submit">Submit Melody</a><br>
+  <!-- <a href="/submit">Submit Melody</a><br> -->
   <a href="/">Go Home</a>
 </body>
 </html>
