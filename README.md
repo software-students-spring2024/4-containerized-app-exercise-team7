@@ -1,5 +1,7 @@
 ![Lint-free](https://github.com/nyu-software-engineering/containerized-app-exercise/actions/workflows/lint.yml/badge.svg)
 
+[![test](https://github.com/software-students-spring2024/4-containerized-app-exercise-team7/actions/workflows/event-logger.yml/badge.svg)](https://github.com/software-students-spring2024/4-containerized-app-exercise-team7/actions/workflows/event-logger.yml)
+
 # Containerized App Exercise
 
 Build a containerized app that uses machine learning. See [instructions](./instructions.md) for details.
