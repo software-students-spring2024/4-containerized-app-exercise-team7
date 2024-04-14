@@ -1,29 +1,21 @@
-"""
-file to test app
-"""
-
-# import pytest
-
-# from machine_learning_client.app import *
+from machine_learning_client.app import app
+import pytest
+import io
 
 
-class Tests:
-    """
-    test app
-    """
+@pytest.fixture
 
-    def test_sanity_check(self):
-        """
-        Sanity check 1
-        """
-        expected = True
-        actual = True
-        assert actual == expected, "Expected True to be equal to True!"
-
-    def test_sanity_check2(self):
-        """
-        Sanity check 1
-        """
-        expected = True
-        actual = True
-        assert actual == expected, "Expected True to be equal to True!"
+def client():
+    
+    app.config.update({
+        
+        "TESTING" : True,
+    })
+    with app.test_client() as client:
+        yield client
+        
+def test_no_file(client):
+    
+    response = client.post('/upload', data={})
+    assert response.status_code == 400
+    assert 'no file' in response.get_json()['error']
