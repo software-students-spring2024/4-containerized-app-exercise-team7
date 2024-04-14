@@ -11,10 +11,18 @@ load_dotenv()
 
 app = Flask(__name__)
 app.secret_key = '232323112@@11'
-mongo_uri = os.getenv("MONGO_URI")
+mongo_uri = os.getenv("MONGO_URI", "mongodb://mongodb:27017/")
 mongo_dbname = str(os.getenv("MONGO_DBNAME"))
 client = MongoClient(mongo_uri)
 db = client[mongo_dbname]
+try:
+    # verify the connection works by pinging the database
+    db.command("ping")  # Use the db object to ping
+    print(" *", "Connected to MongoDB!")  
+except Exception as e:
+    # the ping command failed, so the connection is not available.
+    print(" * MongoDB connection error:", e)
+
 
 @app.route("/")
 def home():
@@ -56,6 +64,28 @@ def send_file_to_ml_app():
             return response.json()
     return render_template('upload.html')
 
+def is_running_in_docker():
+    """Check if the current environment is running inside Docker."""
+    # Check for the .dockerenv file
+    if os.path.exists('/.dockerenv'):
+        return True
+
+    # Check cgroup for Docker-specific entries
+    try:
+        with open('/proc/1/cgroup', 'rt') as f:
+            if 'docker' in f.read() or '/docker/' in f.read():
+                return True
+    except FileNotFoundError:
+        pass
+
+    return False
+
+# Usage
+if is_running_in_docker():
+    print("Running inside Docker.")
+else:
+    print("Not running inside Docker.")
+
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', debug=True, port=os.getenv("FLASK_PORT", 5000))
+    app.run(host='0.0.0.0', debug=True, port=os.getenv("FLASK_PORT", 5001))

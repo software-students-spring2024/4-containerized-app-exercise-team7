@@ -30,6 +30,9 @@ def audio_file():
     if file.filename == '':
         return jsonify({'error': 'No File'}), 400
     
+    if not file.filename.endswith(('.mp3', '.wav')):
+        return jsonify({'error': 'File not supported'}), 400
+    
     if file:
         fn = file.filename
         audio_features = extract_audio_feature(io.BytesIO(file.read()))
