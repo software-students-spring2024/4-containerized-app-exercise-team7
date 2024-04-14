@@ -46,11 +46,6 @@ def test_view_page(client):
     assert response.status_code == 200
     assert b"Your Melodies" in response.data
 
-def test_analyze_page(client):
-
-    response = client.get("/analyze/1234567")
-    assert response.status_code == 200
-    assert b"Analysis" in response.data
 
 def test_running_in_docker(client):
     assert os.path.exists('/.dockerenv') == False

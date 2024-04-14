@@ -54,10 +54,6 @@ def see():
     return render_template("view.html", melodies=melodies)
     #return render_template("view.html")
 
-@app.route("/analyze/<id>")
-def notes():
-    return render_template("analyze.html")
-
 @app.route("/send", methods=['GET', 'POST'])
 def send_file_to_ml_app():
     if request.method == 'POST':
