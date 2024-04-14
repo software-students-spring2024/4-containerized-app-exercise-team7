@@ -8,16 +8,23 @@ import requests
 
 load_dotenv()
 
+DB_USER = os.getenv("DB_USER")
+DB_PASSWORD = os.getenv("DB_PASSWORD")
+DB_HOST = os.getenv("DB_HOST")
 
 app = Flask(__name__)
 app.secret_key = '232323112@@11'
-mongo_uri = os.getenv("MONGO_URI", "mongodb://mongodb:27017/")
-mongo_dbname = str(os.getenv("MONGO_DBNAME"))
-client = MongoClient(mongo_uri)
-db = client[mongo_dbname]
+#mongo_uri = f"mongodb+srv://{DB_USER}:{DB_PASSWORD}@{DB_HOST}/?retryWrites=true&w=majority&appName=Cluster0&tlsAllowInvalidCertificates=true"
+#mongo_uri = os.getenv("MONGO_URI", "mongodb://mongodb:27017/")
+#mongo_dbname = str(os.getenv("MONGO_DBNAME"))
+#client = MongoClient(mongo_uri)
+mongo_client = MongoClient('mongodb://mongo_container:27017/')
+#db = client[mongo_dbname]
+dockerdb = mongo_client.get_database("proj4")
+audio_collection = dockerdb.get_collection("audio_features")
 try:
     # verify the connection works by pinging the database
-    db.command("ping")  # Use the db object to ping
+    dockerdb.command("ping")  # Use the db object to ping
     print(" *", "Connected to MongoDB!")  
 except Exception as e:
     # the ping command failed, so the connection is not available.
@@ -34,14 +41,16 @@ def home():
 @app.route("/submit", methods=["GET","POST"])
 def add():
     if request.method == "POST":
-        melodydata = request.form['melody']
-        db.melodies.insert_one({"melody": melodydata, "date":datetime.datetime.now()})
+        # melodydata = request.form['melody']
+        # db.melodies.insert_one({"melody": melodydata, "date":datetime.datetime.now()})
         return redirect(url_for("home"))
     return render_template("submit.html")
 
 @app.route("/view")
 def see():
-    melodies = list(db.melodies.find())
+    #melodies = list(db.melodies.find())
+    melodies_cursor = audio_collection.find().sort([('_id', -1)]).limit(1)
+    melodies = next(melodies_cursor, None)
     return render_template("view.html", melodies=melodies)
     #return render_template("view.html")
 

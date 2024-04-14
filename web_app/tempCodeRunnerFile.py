@@ -1,1 +1,0 @@
-mongodb://localhost:27017/?directConnection=true&serverSelectionTimeoutMS=2000
