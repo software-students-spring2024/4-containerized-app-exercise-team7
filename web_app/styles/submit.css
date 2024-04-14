@@ -1,0 +1,27 @@
+body {
+    background-color:powderblue;
+    font-family: Nunito;
+    text-align: center;
+    font-size: 24px;
+}
+
+h1 {
+    text-align:center;
+    background-color: green;
+    padding: 16px;
+}
+
+.button {
+    border-radius: 16px;
+    transition-duration: 0.5s;
+    padding: 12px;
+    font-size: 14px;
+    background-color: rgb(159, 159, 197);
+    color: white;
+
+}
+
+.button:hover {
+    background-color: yellowgreen;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
