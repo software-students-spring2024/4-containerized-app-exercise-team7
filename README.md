@@ -20,6 +20,12 @@ docker network create mynetwork
 
 You need to build the ml client first
 
+Change your directory to the ml app
+
+```
+cd  machine_learning_client
+```
+
 ```bash
 docker build -t ml_app .
 ```
@@ -36,7 +42,13 @@ It should result in a running container
 3. Set up the docker container for the web app
 
 
-You need to build the ml client first
+You need to build the web client first
+
+Change your directory to the web app
+
+```
+cd  web_app
+```
 
 ```bash
 docker build -t web_app .  
