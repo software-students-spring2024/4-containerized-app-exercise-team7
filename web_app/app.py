@@ -8,7 +8,6 @@ import requests
 
 load_dotenv()
 
-
 app = Flask(__name__)
 app.secret_key = '232323112@@11'
 mongo_uri = os.getenv("MONGO_URI", "mongodb://mongodb:27017/")
