@@ -32,3 +32,10 @@ def test_home_page(client):
     response = client.get("/")
     assert response.status_code == 200
     assert b"Welcome to Melody Note Finder" in response.data
+
+def test_submit_page(client):
+
+    response = client.get("/submit")
+    assert response.status_code == 200
+    assert b"Add Melody" in response.data
+
